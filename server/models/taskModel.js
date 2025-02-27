@@ -1,0 +1,1 @@
+// Modelo para la base de datos (opcional)

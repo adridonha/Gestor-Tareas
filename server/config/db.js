@@ -1,1 +1,1 @@
-# Conexión con la base de datos PostgreSQL
+// Conexión con la base de datos PostgreSQL
