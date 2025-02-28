@@ -4,27 +4,119 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
     <h1>Lista de Tareas</h1>
-    <ul id="task-list"></ul>
+
+    <!-- Formulario para nueva tarea -->
+    <form id="task-form">
+        <input type="text" id="task-name" placeholder="Task Name" required />
+        <textarea id="task-description" placeholder="Task Description" required></textarea>
+        <select id="task-state">
+            <option value="iniciada">Iniciada</option>
+            <option value="pendiente">Pendiente</option>
+            <option value="completada">Completada</option>
+            <option value="retrasada">Retrasada</option>
+        </select>
+        <input type="date" id="task-date" required />
+        <button type="submit">Añadir tarea</button>
+    </form>
+
+    <!-- Tabla con la lista de tareas -->
+    <table id="task-table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Descripcion</th>
+                <th>Estado</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody id="task-list"></tbody>
+    </table>
 
     <script>
-        // Llamada a la API para obtener las tareas
-        fetch('http://localhost:3000/api/tasks')
-            .then(response => response.json())  // Convierte la respuesta a JSON
-            .then(data => {
-                // Una vez obtenidas las tareas, las insertamos en el HTML
-                const taskList = document.getElementById('task-list');
-                data.forEach(task => {
-                    const li = document.createElement('li');
-                    li.textContent = task.task_name; // Asumiendo que las tareas tienen un campo 'title'
-                    taskList.appendChild(li);
-                });
+        // Fetch tasks and display them
+        const fetchTasks = () => {
+            fetch('http://localhost:3000/api/tasks')
+                .then(response => response.json())
+                .then(data => {
+                    const taskList = document.getElementById('task-list');
+                    taskList.innerHTML = '';
+                    data.forEach(task => {
+                        const row = document.createElement('tr');                        
+                        row.innerHTML = `
+                            <td>${task.task_id}</td>
+                            <td>${task.task_name}</td>
+                            <td>${task.task_description}</td>
+                            <td>${task.task_state}</td>
+                            <td>${task.task_date}</td>
+                            <td>
+                                <button onclick="editTask(${task.task_id})">Editar</button>
+                                <button onclick="deleteTask(${task.task_id})">Borrar</button>
+                            </td>
+                        `;
+                        taskList.appendChild(row);
+                    });
+                })
+                .catch(error => console.error('Error al mostrar las tareas:', error));
+        };
+
+        // Add a new task
+        const addTask = (event) => {
+            event.preventDefault();
+            const task_name = document.getElementById('task-name').value;
+            const task_description = document.getElementById('task-description').value;
+            const task_state = document.getElementById('task-state').value;
+            const task_date = document.getElementById('task-date').value;
+
+            fetch('http://localhost:3000/api/tasks', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ task_name, task_description, task_state, task_date })
             })
-            .catch(error => {
-                console.error('Error al obtener las tareas:', error);
-            });
+            .then(response => response.json())
+            .then(() => {
+                fetchTasks(); // Recargar tareas
+                document.getElementById('task-form').reset();
+            })
+            .catch(error => console.error('Error al añadir la tarea:', error));
+        };
+
+        // Edit a task
+        const editTask = (taskId) => {
+            const task_name = prompt('Editar nombre');
+            const task_description = prompt('Editar descripcion');
+            const task_state = prompt('Editar estado (iniciada, pendiente, completada, retrasada)');
+            const task_date = prompt('Editar fecha (yyyy-mm-dd)');
+
+            if (task_name && task_description && task_state && task_date) {
+                fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+                    method: 'PUT',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ task_name, task_description, task_state, task_date })
+                })
+                .then(response => response.json())
+                .then(() => fetchTasks())  // Reload tasks
+                .catch(error => console.error('Error editando la tarea:', error));
+            }
+        };
+
+        // Delete a task
+        const deleteTask = (taskId) => {
+            fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+                method: 'DELETE'
+            })
+            .then(() => fetchTasks())  // Reload tasks
+            .catch(error => console.error('Error borrando la tarea:', error));
+        };
+
+        // Initialize the page
+        document.getElementById('task-form').addEventListener('submit', addTask);
+        fetchTasks();
     </script>
 </body>
 </html>
