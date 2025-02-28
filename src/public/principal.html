@@ -1,1 +1,30 @@
-# Página principal con la lista de tareas
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+</head>
+<body>
+    <h1>Lista de Tareas</h1>
+    <ul id="task-list"></ul>
+
+    <script>
+        // Llamada a la API para obtener las tareas
+        fetch('http://localhost:3000/api/tasks')
+            .then(response => response.json())  // Convierte la respuesta a JSON
+            .then(data => {
+                // Una vez obtenidas las tareas, las insertamos en el HTML
+                const taskList = document.getElementById('task-list');
+                data.forEach(task => {
+                    const li = document.createElement('li');
+                    li.textContent = task.task_name; // Asumiendo que las tareas tienen un campo 'title'
+                    taskList.appendChild(li);
+                });
+            })
+            .catch(error => {
+                console.error('Error al obtener las tareas:', error);
+            });
+    </script>
+</body>
+</html>
