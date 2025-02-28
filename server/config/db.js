@@ -1,4 +1,4 @@
-require('../../dotenv').config(); // Cargar variables de entorno
+require('dotenv').config(); // Cargar variables de entorno
 const { Pool } = require('pg');
 
 // Configurar la conexión con PostgreSQL
