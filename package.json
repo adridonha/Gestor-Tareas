@@ -4,7 +4,7 @@
   "description": "<!-- Instrucciones para instalar y ejecutar el proyecto -->",
   "main": "index.js",
   "scripts": {
-    "start": "node server/app.js",
+    "start": "node server/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -12,13 +12,15 @@
     "url": "git+https://github.com/adridonha/Gestor-Tareas.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "adridonha",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/adridonha/Gestor-Tareas/issues"
   },
   "homepage": "https://github.com/adridonha/Gestor-Tareas#readme",
   "dependencies": {
-    "express": "^4.21.2"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "pg": "^8.13.3"
   }
 }
