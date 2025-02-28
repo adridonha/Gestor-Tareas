@@ -1,1 +1,24 @@
-# Dependencias y scripts
+{
+  "name": "gestor-tareas",
+  "version": "1.0.0",
+  "description": "<!-- Instrucciones para instalar y ejecutar el proyecto -->",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/adridonha/Gestor-Tareas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/adridonha/Gestor-Tareas/issues"
+  },
+  "homepage": "https://github.com/adridonha/Gestor-Tareas#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
