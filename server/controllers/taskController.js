@@ -1,6 +1,6 @@
 // Lógica para manejar las tareas (CRUD)
 
-const Task = require('./taskModel');
+const Task = require('./../models/taskModel');
 
 const getTasks = async (req, res) => {
     try {
@@ -10,3 +10,5 @@ const getTasks = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
+module.exports = { getTasks };

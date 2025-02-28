@@ -1,13 +1,4 @@
-// Modelo para la base de datos (opcional)
-
-const { Pool } = require('pg');
-const pool = new Pool({
-    user: 'dwec',
-    host: 'localhost',
-    database: 'dwec',
-    password: 'dwec',
-    port: 5432
-});
+const pool = require('../config/db'); // Importamos la conexión desde db.js
 
 const getTasks = async () => {
     const result = await pool.query('SELECT * FROM tasks');
