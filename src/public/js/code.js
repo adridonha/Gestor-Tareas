@@ -5,6 +5,7 @@
 /////////////////
 
 let currentEditingTaskId = null;
+let allTasks = []; // Guardar todas las tareas globalmente
 
 // Funcion para formatear fecha a DD-MM-YYYY
 const formatDateDisplay = (dateString) => {
@@ -24,31 +25,73 @@ const formatDate = (dateString) => {
   return `${year}-${month}-${day}`;
 };
 
+// Renderizar tareas en la tabla
+const renderTasks = (tasksToRender) => {
+  const taskList = document.getElementById('task-list');
+  taskList.innerHTML = ''; // Borrar tareas existentes
+
+  if (tasksToRender.length === 0) {
+    const noTaskRow = document.createElement('tr');
+    noTaskRow.innerHTML = `<td colspan="6">No existe esta tarea</td>`;
+    taskList.appendChild(noTaskRow);
+    return;
+  }
+
+  tasksToRender.forEach(task => {
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${task.task_id}</td>
+      <td>${task.task_name}</td>
+      <td>${task.task_description}</td>
+      <td>${task.task_state}</td>
+      <td>${formatDateDisplay(task.task_date)}</td>
+      <td>
+        <button class="edit-btn" onclick="openEditDialog(${task.task_id})">
+          <i class="fas fa-edit"></i>
+        </button>
+        <button class="delete-btn" onclick="deleteTask(${task.task_id})">
+          <i class="fas fa-trash-alt"></i>
+        </button>
+      </td>
+    `;
+    taskList.appendChild(row);
+  });
+};
+
+// Buscar y filtrar tareas
+const filterTasks = () => {
+  const searchInput = document.getElementById('buscarTareas').value.toLowerCase();
+  const stateFilter = document.getElementById('filtrarEstado').value;
+  
+  const filteredTasks = allTasks.filter(task => {
+    const matchesSearch = task.task_name.toLowerCase().includes(searchInput);
+    const matchesState = stateFilter === '' || task.task_state === stateFilter;
+    
+    return matchesSearch && matchesState;
+  });
+  
+  renderTasks(filteredTasks);
+};
+
 // Mostrar las tareas
 const fetchTasks = () => {
   fetch('http://localhost:3000/api/tasks')
     .then(response => response.json())
     .then(data => {
-      const taskList = document.getElementById('task-list');
-      taskList.innerHTML = '';
-      data.forEach(task => {
-        const row = document.createElement('tr');
-        row.innerHTML = `
-          <td>${task.task_id}</td>
-          <td>${task.task_name}</td>
-          <td>${task.task_description}</td>
-          <td>${task.task_state}</td>
-          <td>${formatDateDisplay(task.task_date)}</td>
-          <td>
-            <button onclick="openEditDialog(${task.task_id})">Editar</button>
-            <button onclick="deleteTask(${task.task_id})">Borrar</button>
-          </td>
-        `;
-        taskList.appendChild(row);
-      });
+      allTasks = data; // Store all tasks
+      renderTasks(data);
+      
+      // Add event listeners for search and filter
+      const searchInput = document.getElementById('buscarTareas');
+      const stateFilter = document.getElementById('filtrarEstado');
+      
+      searchInput.addEventListener('input', filterTasks);
+      stateFilter.addEventListener('change', filterTasks);
     })
     .catch(error => console.error('Error mostrando las tareas:', error));
 };
+
+
 
 // Añadir nueva tarea
 const addTask = (event) => {
@@ -87,7 +130,7 @@ const openEditDialog = (taskId) => {
       document.getElementById('edit-task-date').value = formatDate(task.task_date) || '';
       document.getElementById('edit-dialog').showModal();
     })
-      .catch(error => console.error('Error recuperando la tarea:', error));
+    .catch(error => console.error('Error recuperando la tarea:', error));
 };
 
 // Guardar tras editar
@@ -119,6 +162,21 @@ const deleteTask = (taskId) => {
   .catch(error => console.error('Error borrando la tarea:', error));
 };
 
+// Cambio de tema
+const themeToggle = document.getElementById('theme-toggle');
+
+themeToggle.addEventListener('click', () => {
+  const body = document.body;
+  
+  if (body.classList.contains('light-theme')) {
+    body.classList.remove('light-theme');
+    body.classList.add('dark-theme');
+  } else {
+    body.classList.remove('dark-theme');
+    body.classList.add('light-theme');
+  }
+});
+
 /////////////////
 //   MAIN      //
 /////////////////
@@ -126,7 +184,7 @@ const deleteTask = (taskId) => {
 document.getElementById('task-form').addEventListener('submit', addTask);
 document.getElementById('save-task-btn').addEventListener('click', saveTask);
 document.getElementById('cancel-edit-btn').addEventListener('click', () => {
-document.getElementById('edit-dialog').close();
+  document.getElementById('edit-dialog').close();
 });
 
 fetchTasks();

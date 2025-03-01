@@ -1,0 +1,457 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+.light-theme {
+  --bg-gradient: linear-gradient(135deg, #ffffff 0%, #e6f3ff 100%);
+  --text-color: #333;
+  --card-bg: rgba(255, 255, 255, 0.9);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  --accent-color: #2563eb;
+  --hover-color: #1d4ed8;
+}
+
+.dark-theme {
+  --bg-gradient: linear-gradient(135deg, #2d1b69 0%, #000000 100%);
+  --text-color: #ffffff;
+  --card-bg: rgba(255, 255, 255, 0.2);
+  --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  --accent-color: #8b5cf6;
+  --hover-color: #7c3aed;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  padding-top: 0; /* Remove top padding for navbar */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 5%;
+  width: 100%;
+  background: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent-color);
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(to right, var(--accent-color), var(--hover-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.light-theme .fa-sun,
+.dark-theme .fa-moon {
+  display: none;
+}
+
+.title {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+  background: linear-gradient(to right, var(--accent-color), var(--hover-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeInUp 1s ease;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 2rem 0;
+  background: linear-gradient(to right, var(--accent-color), var(--hover-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+/* Task Form Styling */
+#task-form {
+  width: 100%;
+  max-width: 600px;
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+}
+
+#task-form input, 
+#task-form textarea, 
+#task-form select,
+#task-form button {
+  width: 100%;
+  padding: 0.75rem;
+  margin-bottom: 1rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+#task-form button {
+  background: var(--accent-color);
+  color: white;
+  cursor: pointer;
+  border: none;
+}
+
+#task-form button:hover {
+  background: var(--hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.listado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  margin: 1rem auto;
+  gap: 1rem;
+}
+
+.listado label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+#buscarTareas,
+#filtrarEstado {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  background: var(--card-bg);
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  box-shadow: var(--shadow);
+}
+
+#buscarTareas:focus,
+#filtrarEstado:focus {
+  outline: none;
+  border-color: var(--hover-color);
+  box-shadow: 0 0 0 3px rgba(134, 94, 246, 0.2);
+}
+
+#task-table {
+  width: 100%;
+  max-width: 1000px;
+  border-collapse: separate;
+  border-spacing: 0;
+  box-shadow: var(--shadow);
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+#task-table thead {
+  background: var(--accent-color);
+  color: white;
+}
+
+#task-table th, 
+#task-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#task-table tbody tr {
+  background: var(--card-bg);
+  transition: background 0.3s ease;
+}
+
+#task-table tbody tr:hover {
+  background: rgba(134, 94, 246, 0.1);
+}
+
+#task-table td button {
+  background: var(--accent-color);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+#task-table td button:hover {
+  background: var(--hover-color);
+  transform: translateY(-2px);
+}
+
+#task-table td:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#task-table td .edit-btn,
+#task-table td .delete-btn {
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0.7;
+  font-size: 1.2rem;
+}
+
+#task-table td .edit-btn:hover,
+#task-table td .delete-btn:hover {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+#task-table td .edit-btn {
+  color: var(--accent-color);
+}
+
+#task-table td .delete-btn {
+  color: #ff4d4d;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+#task-table td:nth-child(5) {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+#edit-dialog {
+  border: none;
+  background: transparent;
+  max-width: 500px;
+  width: 90%;
+  padding: 0;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#edit-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(3px);
+}
+
+.dialog-container {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 20px;
+  backdrop-filter: blur(5px);
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--text-color);
+  width: 100%;
+}
+
+.dialog-container h3 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, var(--accent-color), var(--hover-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.dialog-container input, 
+.dialog-container textarea, 
+.dialog-container select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  background: transparent;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.dialog-container button {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 50px;
+  background: var(--accent-color);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.dialog-container button:hover {
+  background: var(--hover-color);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+#cancel-edit-btn {
+  background: transparent;
+  border: 1px solid var(--accent-color);
+  color: var(--accent-color);
+}
+
+#cancel-edit-btn:hover {
+  background: var(--accent-color);
+  color: white;
+}
+
+.dark-theme #edit-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.dark-theme .dialog-container {
+  background: #202020;
+  color: var(--text-color); 
+  border: 1px solid rgba(255, 255, 255, 0.1); 
+}
+
+.dark-theme .dialog-container h3 {
+  color: var(--text-color);
+}
+
+.dark-theme .dialog-container input, 
+.dark-theme .dialog-container textarea, 
+.dark-theme .dialog-container select {
+  border-color: var(--accent-color);
+  color: var(--text-color);
+}
+
+select {
+  position: relative;
+  padding: 0.75rem 4rem 0.75rem 1rem;
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+select::after {
+  content: '▼';
+  position: absolute;
+  top: 50%;
+  right: 0.75rem;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: var(--accent-color);
+}
+
+select:focus {
+  outline: none;
+  border-color: var(--hover-color);
+  box-shadow: 0 0 0 3px rgba(134, 94, 246, 0.2);
+}
+
+select option {
+  background-color: var(--card-bg);
+  color: var(--text-color);
+  padding: 0.5rem;
+}
+
+.dark-theme select option {
+  background-color: #333;
+  color: white;
+}
+
+.dark-theme ::placeholder {
+  color: rgba(255, 255, 255, 0.7); /* White placeholders with slight transparency for all elements */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #task-form,
+  .listado,
+  #task-table {
+    width: 95%;
+    max-width: 100%;
+    margin: 1rem auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
