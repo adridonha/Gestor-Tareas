@@ -18,8 +18,8 @@ CREATE TABLE tasks (
 
 -- Insertar 5 tareas aleatorias relacionadas con el día a día de un programador estudiante
 INSERT INTO tasks (task_name, task_description, task_state, task_date) VALUES
-    ('Revisar notas de clase', 'Repasar los apuntes de la última clase de programación.', 'iniciada', '2025-03-01'),
-    ('Practicar algoritmos', 'Resolver al menos 3 ejercicios de algoritmos en LeetCode.', 'pendiente', '2025-03-02'),
-    ('Configurar entorno de desarrollo', 'Instalar y configurar VS Code con las extensiones necesarias.', 'completada', '2025-02-27'),
-    ('Leer documentación', 'Revisar la documentación oficial de PostgreSQL.', 'retrasada', '2025-03-03'),
-    ('Hacer un mini proyecto', 'Desarrollar una pequeña aplicación CRUD en Python.', 'iniciada', '2025-03-05');
+    ('Revisar notas de clase', 'Repasar los apuntes de la última clase de programación.', 'Iniciada', '2025-03-01'),
+    ('Practicar algoritmos', 'Resolver al menos 3 ejercicios de algoritmos en LeetCode.', 'Pendiente', '2025-03-02'),
+    ('Configurar entorno de desarrollo', 'Instalar y configurar VS Code con las extensiones necesarias.', 'Completada', '2025-02-27'),
+    ('Leer documentación', 'Revisar la documentación oficial de PostgreSQL.', 'Retrasada', '2025-03-03'),
+    ('Hacer un mini proyecto', 'Desarrollar una pequeña aplicación CRUD en Python.', 'Iniciada', '2025-03-05');
