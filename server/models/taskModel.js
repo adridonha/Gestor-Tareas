@@ -2,8 +2,13 @@ const pool = require('../config/db'); // Importamos la conexión desde db.js
 
 // Todas las tareas
 const getTasks = async () => {
-    const result = await pool.query('SELECT * FROM tasks');
+    const result = await pool.query('SELECT task_id, task_name, task_description, task_state, task_date::date AS task_date FROM tasks');
     return result.rows;
+};
+// Una sola tarea
+const getTaskById = async (id) => {
+    const result = await pool.query('SELECT task_id, task_name, task_description, task_state, task_date::date AS task_date FROM tasks WHERE task_id = $1', [id]);
+    return result.rows[0]; // Return the task or null if not found
 };
 
 // Crear nueva tarea
@@ -30,4 +35,4 @@ const deleteTask = async (task_id) => {
     return result;
 };
 
-module.exports = { getTasks, createTask, updateTask, deleteTask };
+module.exports = { getTasks, createTask, updateTask, deleteTask, getTaskById };

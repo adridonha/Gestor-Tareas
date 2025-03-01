@@ -6,3 +6,18 @@ th, td {
   padding: 10px;
   text-align: left;
 }
+
+/* Styling for the dialog box */
+dialog {
+  width: 300px;
+  padding: 20px;
+}
+
+.dialog-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialog-container input, .dialog-container select, .dialog-container button {
+  margin-bottom: 10px;
+}

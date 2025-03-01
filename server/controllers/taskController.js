@@ -12,6 +12,20 @@ const getTasks = async (req, res) => {
     }
 };
 
+// Devolver una tarea
+const getTaskById = async (req, res) => {
+    const { id } = req.params; // Get task ID from URL parameter
+    try {
+        const task = await Task.getTaskById(id); // Fetch task from the database
+        if (!task) {
+            return res.status(404).json({ error: 'Task not found' });
+        }
+        res.json(task); // Send task data back to frontend
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
+
 // Crear una nueva tarea
 const createTask = async (req, res) => {
     const { task_name, task_description, task_state, task_date } = req.body;
@@ -52,4 +66,4 @@ const deleteTask = async (req, res) => {
     }
 };
 
-module.exports = { getTasks, createTask, updateTask, deleteTask };
+module.exports = { getTasks, getTaskById, createTask, updateTask, deleteTask };
