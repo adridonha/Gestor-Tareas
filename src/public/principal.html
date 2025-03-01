@@ -12,10 +12,10 @@
 <body>
   <h1>Lista de Tareas</h1>
 
-  <!-- Form to add a new task -->
+  <!-- Formulario nueva tarea -->
   <form id="task-form">
-    <input type="text" id="task-name" placeholder="Task Name" required />
-    <textarea id="task-description" placeholder="Task Description" required></textarea>
+    <input type="text" id="task-name" placeholder="Nombre" required />
+    <textarea id="task-description" placeholder="Descripción" required></textarea>
     <select id="task-state">
       <option value="Pendiente" selected>Pendiente</option>
       <option value="Iniciada">Iniciada</option>
@@ -23,10 +23,10 @@
       <option value="Retrasada">Retrasada</option>
     </select>
     <input type="date" id="task-date" required />
-    <button type="submit">Add Task</button>
+    <button type="submit">Añadir tarea</button>
   </form>
 
-  <!-- Task Table -->
+  <!-- Tabla de tareas -->
   <table id="task-table">
     <thead>
       <tr>
@@ -41,12 +41,12 @@
     <tbody id="task-list"></tbody>
   </table>
 
-  <!-- Edit Task Dialog -->
+  <!-- Dialog para editar tareas -->
   <dialog id="edit-dialog">
     <div class="dialog-container">
       <h3>Edit Task</h3>
-      <input type="text" id="edit-task-name" placeholder="Task Name" required />
-      <textarea id="edit-task-description" placeholder="Task Description" required></textarea>
+      <input type="text" id="edit-task-name" placeholder="Nombre (obligatorio)" required />
+      <textarea id="edit-task-description" placeholder="Descripción (obligatorio)" required></textarea>
       <select id="edit-task-state">
         <option value="Pendiente">Pendiente</option>
         <option value="Iniciada">Iniciada</option>
