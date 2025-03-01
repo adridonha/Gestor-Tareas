@@ -2,7 +2,7 @@ const pool = require('../config/db'); // Importamos la conexión desde db.js
 
 // Todas las tareas
 const getTasks = async () => {
-    const result = await pool.query('SELECT task_id, task_name, task_description, task_state, task_date::date AS task_date FROM tasks');
+    const result = await pool.query('SELECT task_id, task_name, task_description, task_state, task_date::date AS task_date FROM tasks ORDER BY task_id');
     return result.rows;
 };
 // Una sola tarea
