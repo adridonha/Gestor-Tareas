@@ -2,62 +2,61 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Tareas</title>
-    <link rel="stylesheet" href="./css/styles.css">
-    <script src="./js/code.js" defer></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de Tareas</title>
+  <link rel="stylesheet" href="./css/styles.css">
+  <script src="./js/code.js" defer></script>
 </head>
 
 <body>
-    <h1>Lista de Tareas</h1>
+  <h1>Lista de Tareas</h1>
 
-    <!-- Form to add a new task -->
-    <form id="task-form">
-        <input type="text" id="task-name" placeholder="Task Name" required />
-        <textarea id="task-description" placeholder="Task Description" required></textarea>
-        <select id="task-state">
-            <option value="Pendiente">Pendiente</option>
-            <option value="Iniciada">Iniciada</option>
-            <option value="Completada">Completada</option>
-            <option value="Retrasada">Retrasada</option>
-        </select>
-        <input type="date" id="task-date" required />
-        <button type="submit">Add Task</button>
-    </form>
+  <!-- Form to add a new task -->
+  <form id="task-form">
+    <input type="text" id="task-name" placeholder="Task Name" required />
+    <textarea id="task-description" placeholder="Task Description" required></textarea>
+    <select id="task-state">
+      <option value="Pendiente">Pendiente</option>
+      <option value="Iniciada">Iniciada</option>
+      <option value="Completada">Completada</option>
+      <option value="Retrasada">Retrasada</option>
+    </select>
+    <input type="date" id="task-date" required />
+    <button type="submit">Add Task</button>
+  </form>
 
-    <!-- Task Table -->
-    <table id="task-table">
-        <thead>
-            <tr>
-                <th>Task ID</th>
-                <th>Task Name</th>
-                <th>Task Description</th>
-                <th>Task State</th>
-                <th>Task Date</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody id="task-list"></tbody>
-    </table>
+  <!-- Task Table -->
+  <table id="task-table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Descripción</th>
+        <th>Estado</th>
+        <th>Fecha</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody id="task-list"></tbody>
+  </table>
 
-    <!-- Edit Task Dialog -->
-    <dialog id="edit-dialog">
-        <div class="dialog-container">
-            <h3>Edit Task</h3>
-            <input type="text" id="edit-task-name" placeholder="Task Name" required />
-            <textarea id="edit-task-description" placeholder="Task Description" required></textarea>
-            <select id="edit-task-state">
-                <option value="Pendiente">Pendiente</option>
-                <option value="Iniciada">Iniciada</option>
-                <option value="Completada">Completada</option>
-                <option value="Retrasada">Retrasada</option>
-            </select>
-            <input type="date" id="edit-task-date" required />
-            <button id="save-task-btn">Save Changes</button>
-            <button id="cancel-edit-btn">Cancel</button>
-        </div>
-    </dialog>
+  <!-- Edit Task Dialog -->
+  <dialog id="edit-dialog">
+    <div class="dialog-container">
+      <h3>Edit Task</h3>
+      <input type="text" id="edit-task-name" placeholder="Task Name" required />
+      <textarea id="edit-task-description" placeholder="Task Description" required></textarea>
+      <select id="edit-task-state">
+        <option value="Pendiente">Pendiente</option>
+        <option value="Iniciada">Iniciada</option>
+        <option value="Completada">Completada</option>
+        <option value="Retrasada">Retrasada</option>
+      </select>
+      <input type="date" id="edit-task-date" required />
+      <button id="save-task-btn">Guardar cambios</button>
+      <button id="cancel-edit-btn">Cancelar</button>
+    </div>
+  </dialog>
 </body>
-
 </html>
