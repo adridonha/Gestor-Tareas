@@ -5,14 +5,10 @@
 /////////////////
 
 let currentEditingTaskId = null;
-let allTasks = []; // Guardar todas las tareas globalmente
+let allTasks = []; 
 
 // Funcion para formatear fecha a DD-MM-YYYY
 const formatDateDisplay = (dateString) => {
-  // Si la fecha en la db es null, devolver string vacio
-  if (dateString == null) {
-    return '';
-  }
   const date = new Date(dateString);
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -22,10 +18,6 @@ const formatDateDisplay = (dateString) => {
 
 // Funcion para formatear a formato YYYY-MM-DD
 const formatDate = (dateString) => {
-  // Si no hay fecha, que el input este en blanco
-  if (dateString == null) {
-    return '';
-  }
   const date = new Date(dateString);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -36,7 +28,7 @@ const formatDate = (dateString) => {
 // Renderizar tareas en la tabla
 const renderTasks = (tasksToRender) => {
   const taskList = document.getElementById('task-list');
-  taskList.innerHTML = ''; // Borrar tareas existentes
+  taskList.innerHTML = ''; 
 
   if (tasksToRender.length === 0) {
     const noTaskRow = document.createElement('tr');
@@ -86,13 +78,21 @@ document.addEventListener('click', (e) => {
 const filterTasks = () => {
   const searchInput = document.getElementById('buscarTareas').value.toLowerCase();
   const stateFilter = document.getElementById('filtrarEstado').value;
+  const dateSortOption = document.getElementById('ordenarFecha').value;
   
-  const filteredTasks = allTasks.filter(task => {
+  let filteredTasks = allTasks.filter(task => {
     const matchesSearch = task.task_name.toLowerCase().includes(searchInput);
     const matchesState = stateFilter === '' || task.task_state === stateFilter;
     
     return matchesSearch && matchesState;
   });
+  
+  // Ordenar por fecha 
+  if (dateSortOption === 'reciente') {
+    filteredTasks.sort((a, b) => new Date(b.task_date) - new Date(a.task_date));
+  } else if (dateSortOption === 'antigua') {
+    filteredTasks.sort((a, b) => new Date(a.task_date) - new Date(b.task_date));
+  }
   
   renderTasks(filteredTasks);
 };
@@ -105,17 +105,17 @@ const fetchTasks = () => {
       allTasks = data; // Store all tasks
       renderTasks(data);
       
-      // Add event listeners for search and filter
+      // Add event listeners for search, filter, and date sorting
       const searchInput = document.getElementById('buscarTareas');
       const stateFilter = document.getElementById('filtrarEstado');
+      const dateSort = document.getElementById('ordenarFecha');
       
       searchInput.addEventListener('input', filterTasks);
       stateFilter.addEventListener('change', filterTasks);
+      dateSort.addEventListener('change', filterTasks);
     })
     .catch(error => console.error('Error mostrando las tareas:', error));
 };
-
-
 
 // Añadir nueva tarea
 const addTask = (event) => {
@@ -124,6 +124,13 @@ const addTask = (event) => {
   const task_description = document.getElementById('task-description').value;
   const task_state = document.getElementById('task-state').value;
   const task_date = document.getElementById('task-date').value;
+  
+  // Validate date is not earlier than current date
+  const currentDate = new Date().toISOString().split('T')[0];
+  if (task_date < currentDate) {
+    alert('La fecha de la tarea no puede ser anterior a la fecha actual.');
+    return;
+  }
   
   fetch('http://localhost:3000/api/tasks', {
     method: 'POST',
@@ -164,6 +171,13 @@ const saveTask = () => {
   const task_state = document.getElementById('edit-task-state').value;
   const task_date = document.getElementById('edit-task-date').value;
   
+  // Validate date is not earlier than current date
+  const currentDate = new Date().toISOString().split('T')[0];
+  if (task_date < currentDate) {
+    alert('La fecha de la tarea no puede ser anterior a la fecha actual.');
+    return;
+  }
+  
   fetch(`http://localhost:3000/api/tasks/${currentEditingTaskId}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -174,7 +188,7 @@ const saveTask = () => {
     fetchTasks();
     document.getElementById('edit-dialog').close();
   })
-  .catch(error => console.error('Error guardando la tarea:', error));
+  .catch(error => console.error('Error al guardar tarea:', error));
 };
 
 // Borrar una tarea
@@ -186,7 +200,7 @@ const deleteTask = (taskId) => {
   .catch(error => console.error('Error borrando la tarea:', error));
 };
 
-// Cambio de tema
+// Modo claro/oscuro
 const themeToggle = document.getElementById('theme-toggle');
 
 themeToggle.addEventListener('click', () => {
