@@ -73,20 +73,20 @@ const renderTasks = (tasksToRender) => {
 };
 
 //Menu hambugersa
-const menuToggle = document.getElementById('menu-toggle');
-const navLinks = document.querySelector('.nav-links');
+// const menuToggle = document.getElementById('menu-toggle');
+// const navLinks = document.querySelector('.nav-links');
 
-menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    menuToggle.classList.toggle('active');
-});
+// menuToggle.addEventListener('click', () => {
+//     navLinks.classList.toggle('active');
+//     menuToggle.classList.toggle('active');
+// });
 
-document.addEventListener('click', (e) => {
-    if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
-        navLinks.classList.remove('active');
-        menuToggle.classList.remove('active');
-    }
-});
+// document.addEventListener('click', (e) => {
+//     if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
+//         navLinks.classList.remove('active');
+//         menuToggle.classList.remove('active');
+//     }
+// });
 
 // Buscar y filtrar tareas
 const filterTasks = () => {
