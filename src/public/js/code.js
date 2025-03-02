@@ -29,6 +29,9 @@ const formatDateDisplay = (dateString) => {
 
 // Funcion para formatear a formato YYYY-MM-DD
 const formatDate = (dateString) => {
+  if (dateString == null) {
+    return '';
+  }
   const date = new Date(dateString);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');
