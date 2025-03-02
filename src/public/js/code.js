@@ -9,7 +9,18 @@ let allTasks = [];
 
 // Funcion para formatear fecha a DD-MM-YYYY
 const formatDateDisplay = (dateString) => {
+  // Check if dateString is empty or undefined
+  if (!dateString) {
+    return "Sin fecha de entrega";
+  }
+
   const date = new Date(dateString);
+  
+  // Check if date is invalid
+  if (isNaN(date.getTime())) {
+    return "Sin fecha de entrega";
+  }
+
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
   const year = date.getFullYear();
@@ -125,12 +136,6 @@ const addTask = (event) => {
   const task_state = document.getElementById('task-state').value;
   const task_date = document.getElementById('task-date').value;
   
-  // Validate date is not earlier than current date
-  const currentDate = new Date().toISOString().split('T')[0];
-  if (task_date < currentDate) {
-    alert('La fecha de la tarea no puede ser anterior a la fecha actual.');
-    return;
-  }
   
   fetch('http://localhost:3000/api/tasks', {
     method: 'POST',
@@ -170,13 +175,6 @@ const saveTask = () => {
   const task_description = document.getElementById('edit-task-description').value;
   const task_state = document.getElementById('edit-task-state').value;
   const task_date = document.getElementById('edit-task-date').value;
-  
-  // Validate date is not earlier than current date
-  const currentDate = new Date().toISOString().split('T')[0];
-  if (task_date < currentDate) {
-    alert('La fecha de la tarea no puede ser anterior a la fecha actual.');
-    return;
-  }
   
   fetch(`http://localhost:3000/api/tasks/${currentEditingTaskId}`, {
     method: 'PUT',
