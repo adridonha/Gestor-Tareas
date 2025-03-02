@@ -311,7 +311,6 @@ th, td {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 150px;
 }
 
 #edit-dialog {
@@ -540,6 +539,85 @@ select option {
   h1 {
     font-size: 2rem;
   }
+
+  #task-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    overflow-x: auto;
+    display: block;
+    max-width: 100%;
+    border: none;
+    margin: 0 auto;
+  }
+
+  #task-table tbody {
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  #task-table thead {
+    display: none;
+  }
+
+  #task-table tr {
+    display: block;
+    margin-bottom: 1rem;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem;
+    background: var(--card-bg);
+    box-shadow: var(--shadow);
+    width: 90%;
+    max-width: 400px;
+  }
+
+  #task-table td {
+    display: block;
+    text-align: center;
+    padding: 0.5rem 1rem;
+    position: relative;
+    border: 1px solid var(--accent-color);
+    border-bottom-width: 1px;
+    box-sizing: border-box;
+    width: 100% !important;
+  }
+
+
+  #task-table td:first-child {
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  #task-table td:last-child {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-width: 1px;
+    border: 1px solid var(--accent-color);
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  #task-table td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: var(--accent-color);
+  }
+
+  #task-table td button {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+    margin: 0.25rem;
+  }
+
 }
 
 /* Animation */
