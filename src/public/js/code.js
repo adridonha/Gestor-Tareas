@@ -231,11 +231,27 @@ themeToggle.addEventListener('click', () => {
     body.classList.remove('dark-theme');
     body.classList.add('light-theme');
   }
+  // Guardar el tema en localstorage
+  let theme = document.body.className;
+  localStorage.setItem('theme', theme);
 });
+
+// Cargar tema desde localstorage
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    // Si existe se aplica
+    document.body.className = savedTheme;
+  }
+  // Por defecto ya esta el light-theme
+}
 
 /////////////////
 //   MAIN      //
 /////////////////
+
+// Cargar el tema
+loadTheme();
 
 document.getElementById('task-form').addEventListener('submit', addTask);
 document.getElementById('save-task-btn').addEventListener('click', saveTask);

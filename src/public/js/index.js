@@ -3,7 +3,20 @@
 document.getElementById('theme-toggle').addEventListener('click', () => {
   document.body.classList.toggle('dark-theme');
   document.body.classList.toggle('light-theme');
+  // Guardar el tema en localstorage
+  let theme = document.body.className;
+  localStorage.setItem('theme', theme);
 });
+
+// Cargar tema desde localstorage
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme) {
+    // Si existe se aplica
+    document.body.className = savedTheme;
+  }
+  // Por defecto ya esta el light-theme
+}
 
 // Menu movil
 const menuToggle = document.getElementById('menu-toggle');
@@ -116,3 +129,6 @@ VanillaTilt.init(document.querySelectorAll('.feature-card, .service-card'), {
     glare: true,
     'max-glare': 0.2,
 });
+
+// Cargar el tema
+loadTheme();
