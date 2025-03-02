@@ -1,1 +1,254 @@
-# Landing page con información del proyecto
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Tareas - Gestión Profesional de Tareas</title>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="light-theme">
+    <nav class="navbar">
+        <div class="logo">TaskMaster Pro</div>
+        <div class="nav-links">
+            <a href="#home">Inicio</a>
+            <a href="#services">Servicios</a>
+            <a href="#about">Nosotros</a>
+            <a href="#contact">Contacto</a>
+            <a href="principal.html">App</a>
+        </div>
+        <button id="menu-toggle" class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </button>
+        <button id="theme-toggle" class="theme-toggle">
+            <i class="fas fa-moon"></i>
+            <i class="fas fa-sun"></i>
+        </button>
+    </nav>
+
+    <main class="hero">
+        <div class="hero-content">
+            <h1 class="title">Gestiona tus Tareas como Nunca Antes</h1>
+            <p class="subtitle">Optimiza tu flujo de trabajo con nuestra solución intuitiva y potente de gestión de tareas</p>
+            <a href="principal.html" class="cta-button">Comenzar <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-tasks"></i>
+                <h3>Organización de Tareas</h3>
+                <p>Organiza y prioriza tus tareas de manera eficiente</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-clock"></i>
+                <h3>Gestión del Tiempo</h3>
+                <p>Controla los plazos y mantén el calendario</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Seguimiento del Progreso</h3>
+                <p>Monitorea tu productividad en tiempo real</p>
+            </div>
+        </div>
+    </main>
+
+    <section id="services" class="section services-section">
+        <h2 class="section-title">Nuestros Servicios</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <i class="fas fa-user-plus"></i>
+                <h3>Sin Registro Requerido</h3>
+                <p>¡Comienza a gestionar tus tareas al instante - sin necesidad de registrarte!</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-laptop-code"></i>
+                <h3>Interfaz Simple</h3>
+                <p>Diseño intuitivo que hace que la gestión de tareas sea sencilla</p>
+            </div>
+            <div class="service-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Rápido y Eficiente</h3>
+                <p>Rendimiento ultrarrápido para una gestión de tareas sin interrupciones</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="section about-section">
+        <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="about-text">
+                <p>TaskMaster Pro fue desarrollado en Sevilla, España, por cuatro programadores talentosos del IES Cristóbal de Monroy. Nuestro equipo de estudiantes de 2º año de DAW incluye:</p>
+                <ul class="team-list">
+                    <li>Daniel Dominguez</li>
+                    <li>Adrian Doña</li>
+                    <li>Jose Enrique Mateo</li>
+                    <li>Alvaro Trigueros</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact-section">
+        <h2 class="section-title">Contáctanos</h2>
+        <form id="contact-form" class="contact-form">
+            <div class="form-group">
+                <input type="text" id="name" name="name" placeholder="Tu Nombre" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Tu Email" required>
+            </div>
+            <div class="form-group">
+                <textarea id="message" name="message" placeholder="Tu Mensaje" required></textarea>
+            </div>
+            <button type="submit" class="submit-btn">Enviar Mensaje</button>
+        </form>
+    </section>
+
+    <section class="github-section">
+        <a href="https://github.com/adridonha/Gestor-Tareas/tree/main" class="github-link" target="_blank" rel="noopener noreferrer">
+            <div class="github-content">
+                <i class="fab fa-github"></i>
+                <span>Ver en GitHub</span>
+            </div>
+        </a>
+    </section>
+    
+    <!-- Nuevo componente de notificación con overlay -->
+    <div class="notification-overlay" id="notification-overlay">
+        <div class="notification" id="notification">
+            <div class="notification-icon">
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+            <div class="notification-content">
+                <div class="notification-title">¡Mensaje enviado!</div>
+                <div class="notification-message">Gracias por contactarnos</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script>
+        // Theme toggle
+        document.getElementById('theme-toggle').addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            document.body.classList.toggle('light-theme');
+        });
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!menuToggle.contains(e.target) && !navLinks.contains(e.target) && navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
+            }
+        });
+
+        // Smooth scrolling for Home link
+        document.querySelector('a[href="#home"]').addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Función para mostrar la notificación
+        function showNotification(title, message) {
+            const notificationOverlay = document.getElementById('notification-overlay');
+            const notification = document.getElementById('notification');
+            const notificationTitle = notification.querySelector('.notification-title');
+            const notificationMessage = notification.querySelector('.notification-message');
+            
+            // Actualizar el contenido
+            notificationTitle.textContent = title || '¡Mensaje enviado!';
+            notificationMessage.textContent = message || 'Gracias por contactarnos';
+            
+            // Mostrar la notificación con overlay
+            notificationOverlay.classList.add('show');
+            
+            // Ocultar después de 2 segundos
+            setTimeout(() => {
+                notificationOverlay.classList.remove('show');
+            }, 2000);
+        }
+        
+        // Initialize EmailJS - Asegúrate de que se cargue completamente antes de usarlo
+        (function() {
+            // Verificar que EmailJS está disponible
+            if (typeof emailjs !== 'undefined') {
+                emailjs.init("fGkbRRMJY7eZGrAOr");
+            } else {
+                console.error("EmailJS no está cargado correctamente");
+            }
+        })();
+
+        // Handle form submission
+        document.getElementById('contact-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Verifica que EmailJS esté disponible
+            if (typeof emailjs === 'undefined') {
+                showNotification('Error', 'La biblioteca EmailJS no está cargada correctamente');
+                return;
+            }
+
+            // Show loading state
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Enviando...';
+            submitBtn.disabled = true;
+
+            // Obtener los valores del formulario
+            const userName = document.getElementById('name').value;
+            const userEmail = document.getElementById('email').value;
+            const userMessage = document.getElementById('message').value;
+
+            // Prepare template parameters - Con los nombres exactos esperados por tu plantilla
+            const templateParams = {
+                user_name: userName,
+                user_email: userEmail,
+                message: userMessage,
+                to_name: "TaskMaster Pro"
+            };
+
+            console.log("Enviando email con parámetros:", templateParams);
+
+            // Send email using EmailJS
+            emailjs.send('service_vsp9xor', 'template_tn2tq1l', templateParams)
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    showNotification('¡Mensaje enviado!', 'Nos pondremos en contacto contigo pronto');
+                    document.getElementById('contact-form').reset();
+                })
+                .catch(function(error) {
+                    console.error('FAILED...', error);
+                    showNotification('Error al enviar', 'Por favor, inténtalo de nuevo: ' + error.text);
+                })
+                .finally(function() {
+                    // Reset button state
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+        });
+
+        VanillaTilt.init(document.querySelectorAll('.feature-card, .service-card'), {
+            max: 15,
+            speed: 400,
+            glare: true,
+            'max-glare': 0.2,
+        });
+    </script>
+</body>
+</html>
