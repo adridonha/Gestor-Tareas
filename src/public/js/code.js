@@ -9,6 +9,10 @@ let allTasks = []; // Guardar todas las tareas globalmente
 
 // Funcion para formatear fecha a DD-MM-YYYY
 const formatDateDisplay = (dateString) => {
+  // Si la fecha en la db es null, devolver string vacio
+  if (dateString == null) {
+    return '';
+  }
   const date = new Date(dateString);
   const day = String(date.getDate()).padStart(2, '0');
   const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -18,6 +22,10 @@ const formatDateDisplay = (dateString) => {
 
 // Funcion para formatear a formato YYYY-MM-DD
 const formatDate = (dateString) => {
+  // Si no hay fecha, que el input este en blanco
+  if (dateString == null) {
+    return '';
+  }
   const date = new Date(dateString);
   const year = date.getFullYear();
   const month = String(date.getMonth() + 1).padStart(2, '0');

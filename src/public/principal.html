@@ -29,14 +29,14 @@
   <!-- Formulario nueva tarea -->
   <form id="task-form">
     <input type="text" id="task-name" placeholder="Nombre (obligatorio)" required />
-    <textarea id="task-description" placeholder="Descripción (obligatorio)" required></textarea>
+    <textarea id="task-description" placeholder="Descripción"></textarea>
     <select id="task-state">
       <option value="Pendiente" selected>Pendiente</option>
       <option value="Iniciada">Iniciada</option>
       <option value="Completada">Completada</option>
       <option value="Retrasada">Retrasada</option>
     </select>
-    <input type="date" id="task-date" required />
+    <input type="date" id="task-date" />
     <button type="submit">Añadir tarea</button>
   </form>
 
@@ -77,7 +77,7 @@
     <div class="dialog-container">
       <h3>Editar Tarea</h3>
       <input type="text" id="edit-task-name" placeholder="Nombre (obligatorio)" required />
-      <textarea id="edit-task-description" placeholder="Descripción (obligatorio)" required></textarea>
+      <textarea id="edit-task-description" placeholder="Descripción"></textarea>
       <select id="edit-task-state">
         <option value="Pendiente">Pendiente</option>
         <option value="Iniciada">Iniciada</option>
