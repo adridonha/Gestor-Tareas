@@ -28,10 +28,26 @@ body {
   background: var(--bg-gradient);
   color: var(--text-color);
   transition: all 0.3s ease;
-  padding-top: 0; /* Remove top padding for navbar */
+  padding-top: 0; 
   display: flex;
   flex-direction: column;
   align-items: center;
+  display: grid;
+  grid-template-columns: 25% auto;
+  gap: 1rem;
+  grid-template-areas: 
+  "navbar navbar"
+  "h1 listado"
+  "task-form task-table"
+  ;
+}
+
+h1{
+  grid-area: h1;
+}
+
+.menu-toggle {
+  display: none;
 }
 
 .navbar {
@@ -41,6 +57,7 @@ body {
   padding: 1.5rem 5%;
   width: 100%;
   background: transparent;
+  grid-area: navbar;
 }
 
 .nav-links {
@@ -107,10 +124,11 @@ h1 {
   text-align: center;
 }
 
-/* Task Form Styling */
 #task-form {
-  width: 100%;
-  max-width: 600px;
+  justify-self: center; 
+  width: 95%;  
+  align-self: start; 
+  margin-top: 0; 
   background: var(--card-bg);
   padding: 2rem;
   border-radius: 15px;
@@ -120,6 +138,7 @@ h1 {
   gap: 1rem;
   margin-bottom: 2rem;
   backdrop-filter: blur(10px);
+  grid-area: task-form;
 }
 
 #task-form input, 
@@ -150,24 +169,25 @@ h1 {
 }
 
 .listado {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 50% auto auto; 
   align-items: center;
-  width: 100%;
-  max-width: 600px;
+  width: 95%;
+  max-width: 100%;
   margin: 1rem auto;
   gap: 1rem;
+  grid-area: listado;
 }
 
 .listado label {
   width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
 }
 
 #buscarTareas,
-#filtrarEstado {
+#filtrarEstado,
+#filtrarFecha {
   width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--accent-color);
@@ -180,20 +200,29 @@ h1 {
 }
 
 #buscarTareas:focus,
-#filtrarEstado:focus {
+#filtrarEstado:focus,
+#ordenarFecha:focus,
+#task-form input:focus,
+#task-form textarea:focus,
+#task-form select:focus,
+.dialog input:focus,
+.dialog textarea:focus,
+.dialog select:focus {
   outline: none;
   border-color: var(--hover-color);
   box-shadow: 0 0 0 3px rgba(134, 94, 246, 0.2);
 }
 
 #task-table {
-  width: 100%;
-  max-width: 1000px;
+  justify-self: center; 
+  width: 95%; 
   border-collapse: separate;
   border-spacing: 0;
   box-shadow: var(--shadow);
-  margin-top: 1rem;
+  margin-top: 0; 
   margin-bottom: 2rem;
+  grid-area: task-table;
+  align-self: start; 
 }
 
 #task-table thead {
@@ -396,6 +425,7 @@ select {
   color: var(--text-color);
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 100%;
 }
 
 select::after {
@@ -426,10 +456,9 @@ select option {
 }
 
 .dark-theme ::placeholder {
-  color: rgba(255, 255, 255, 0.7); /* White placeholders with slight transparency for all elements */
+  color: rgba(255, 255, 255, 0.7); 
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   #task-form,
   .listado,
@@ -437,6 +466,75 @@ select option {
     width: 95%;
     max-width: 100%;
     margin: 1rem auto;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    grid-template-columns: 1fr;
+    grid-template-areas: 
+      "navbar"
+      "h1"
+      "task-form"
+      "listado"
+      "task-table";
+    gap: 1rem;
+  }
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background: var(--menu-bg); /* Usar la nueva variable de fondo del menú */
+    backdrop-filter: blur(10px);
+    flex-direction: column;
+    padding: 6rem 2rem;
+    transition: right 0.3s ease;
+    box-shadow: var(--shadow);
+    z-index: 999;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .menu-toggle {
+    display: block;
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 1001;
+  }
+
+  .listado {
+    grid-template-columns: 1fr;
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  #task-form {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  #task-table {
+    overflow-x: auto;
+  }
+
+  .title {
+    font-size: 2.5rem;
+    text-align: center;
   }
 
   h1 {
