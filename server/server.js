@@ -1,6 +1,5 @@
 const express = require('express');
 const pool = require('./config/db.js'); // Importar la conexión a PostgreSQL
-const usuarioRoutes = require('./routes/usuarioRoutes');
 const taskRoutes = require('./routes/taskRoutes');
 const validateTask = require('./middlewares/validateTask'); // El middleware de validacion
 const path = require('path'); // Necesario para trabajar con rutas de archivos
@@ -15,7 +14,6 @@ app.use(express.static(path.join(__dirname, '../src/public')));
 
 // Ruta para obtener datos desde PostgreSQL
 app.use('/api/tasks', taskRoutes);
-app.use('/api/usuarios', usuarioRoutes);
 
 // Arrancar el servidor
 app.listen(port, () => {
