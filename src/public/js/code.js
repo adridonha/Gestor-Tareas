@@ -149,6 +149,11 @@ const addTask = (event) => {
   .then(() => {
     fetchTasks();
     document.getElementById('task-form').reset();
+    Swal.fire({
+      title: "Tarea añadida correctamente",
+      icon: "success",
+      draggable: true
+    });
   })
   .catch(error => console.error('Error añadiendo la tarea:', error));
 };
@@ -188,6 +193,11 @@ const saveTask = () => {
   .then(() => {
     fetchTasks();
     document.getElementById('edit-dialog').close();
+    Swal.fire({
+      title: "Tarea editada correctamente",
+      icon: "success",
+      draggable: true
+    });
   })
   .catch(error => console.error('Error al guardar tarea:', error));
 };
@@ -197,7 +207,14 @@ const deleteTask = (taskId) => {
   fetch(`http://localhost:3000/api/tasks/${taskId}`, {
     method: 'DELETE'
   })
-  .then(() => fetchTasks())
+  .then(() => {
+    fetchTasks();
+    Swal.fire({
+      title: "Tarea eliminada correctamente",
+      icon: "success",
+      draggable: true
+    });
+  })
   .catch(error => console.error('Error borrando la tarea:', error));
 };
 
