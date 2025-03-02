@@ -78,13 +78,13 @@
       <h3>Editar Tarea</h3>
       <input type="text" id="edit-task-name" placeholder="Nombre (obligatorio)" required />
       <textarea id="edit-task-description" placeholder="Descripción"></textarea>
-      <select id="edit-task-state">
+      <select id="edit-task-state" required>
         <option value="Pendiente">Pendiente</option>
         <option value="Iniciada">Iniciada</option>
         <option value="Completada">Completada</option>
         <option value="Retrasada">Retrasada</option>
       </select>
-      <input type="date" id="edit-task-date" required />
+      <input type="date" id="edit-task-date"/>
       <button id="save-task-btn">Guardar cambios</button>
       <button id="cancel-edit-btn">Cancelar</button>
     </div>

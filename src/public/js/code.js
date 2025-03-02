@@ -129,7 +129,7 @@ const openEditDialog = (taskId) => {
     .then(response => response.json())
     .then(task => {
       if (!task) {
-        console.error("Task not found");
+        console.error("Tarea no encontrada");
         return;
       }
       document.getElementById('edit-task-name').value = task.task_name || '';
@@ -158,7 +158,7 @@ const saveTask = () => {
     fetchTasks();
     document.getElementById('edit-dialog').close();
   })
-  .catch(error => console.error('Error saving task:', error));
+  .catch(error => console.error('Error guardando la tarea:', error));
 };
 
 // Borrar una tarea

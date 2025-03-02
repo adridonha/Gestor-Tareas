@@ -13,7 +13,6 @@ const getTaskById = async (id) => {
 
 // Crear nueva tarea
 const createTask = async (task_name, task_description, task_state, task_date) => {
-    task_date = task_date == '' ? null : task_date;
     const result = await pool.query(
         'INSERT INTO tasks (task_name, task_description, task_state, task_date) VALUES ($1, $2, $3, $4) RETURNING *',
         [task_name, task_description, task_state, task_date]
@@ -23,7 +22,6 @@ const createTask = async (task_name, task_description, task_state, task_date) =>
 
 // Actualizar una tarea
 const updateTask = async (task_id, task_name, task_description, task_state, task_date) => {
-    task_date = task_date == '' ? null : task_date;
     const result = await pool.query(
         'UPDATE tasks SET task_name = $1, task_description = $2, task_state = $3, task_date = $4 WHERE task_id = $5 RETURNING *',
         [task_name, task_description, task_state, task_date, task_id]
