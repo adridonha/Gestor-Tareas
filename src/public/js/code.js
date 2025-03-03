@@ -216,18 +216,30 @@ const saveTask = () => {
 
 // Borrar una tarea
 const deleteTask = (taskId) => {
-  fetch(`http://localhost:3000/api/tasks/${taskId}`, {
-    method: 'DELETE'
-  })
-  .then(() => {
-    fetchTasks();
-    Swal.fire({
-      title: "Tarea eliminada correctamente",
-      icon: "success",
-      draggable: true
-    });
-  })
-  .catch(error => console.error('Error borrando la tarea:', error));
+  Swal.fire({
+    title: "¿Estás seguro?",
+    text: "¡No podrás revertir este cambio!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Eliminar!"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:3000/api/tasks/${taskId}`, {
+        method: 'DELETE'
+      })
+      .then(() => {
+        fetchTasks();
+        Swal.fire({
+          title: "¡Borrada!",
+          text: "Tu tarea ha sido eliminada.",
+          icon: "success"
+        });
+      })
+      .catch(error => console.error('Error borrando la tarea:', error));
+    }
+  });
 };
 
 // Modo claro/oscuro
