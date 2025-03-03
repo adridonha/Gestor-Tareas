@@ -7,6 +7,27 @@ CREATE DATABASE dwec OWNER dwec;
 -- Conectarse a la base de datos "dwec"
 \c dwec
 
+---------------------------------------------
+-- METODO ALTERNATIVO
+-- Crear usuario
+-- CREATE USER dwec WITH PASSWORD 'dwec';
+    
+-- Crear base de datos
+-- CREATE DATABASE dwec;
+    
+-- Cambiar a la base de datos dwec
+-- \c dwec
+    
+-- Dar permisos en la base de datos
+-- GRANT ALL PRIVILEGES ON DATABASE dwec TO dwec;
+    
+-- Dar permisos en esquema public
+-- GRANT ALL ON SCHEMA public TO dwec;
+---------------------------------------------
+
+-- Cambiar codificacion a UTF8 para asegurarnos de que los registros admitan español
+SET client_encoding TO 'UTF8';
+    
 -- Crear la tabla "tasks" para la lista de tareas
 CREATE TABLE tasks (
     task_id SERIAL PRIMARY KEY,
