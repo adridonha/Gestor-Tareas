@@ -179,10 +179,22 @@ const openEditDialog = (taskId) => {
 
 // Guardar tras editar
 const saveTask = () => {
-  const task_name = document.getElementById('edit-task-name').value;
+  const task_name = document.getElementById('edit-task-name').value.trim();
   const task_description = document.getElementById('edit-task-description').value;
   const task_state = document.getElementById('edit-task-state').value;
   const task_date = document.getElementById('edit-task-date').value;
+  
+  // Validate task name
+  if (!task_name) {
+    document.getElementById('edit-dialog').close(); // Close the edit dialog
+    Swal.fire({
+      title: "Error",
+      text: "El nombre de la tarea no puede estar vacío",
+      icon: "error",
+      draggable: true
+    });
+    return;
+  }
   
   fetch(`http://localhost:3000/api/tasks/${currentEditingTaskId}`, {
     method: 'PUT',
