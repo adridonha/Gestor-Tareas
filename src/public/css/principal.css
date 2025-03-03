@@ -85,6 +85,10 @@ h1{
   -webkit-text-fill-color: transparent;
 }
 
+.logo a{
+  text-decoration: none;
+}
+
 .theme-toggle {
   background: none;
   border: none;
