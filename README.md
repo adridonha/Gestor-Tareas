@@ -195,15 +195,15 @@ O si lo prefieres, en la barra de navegación, en <italic>App</italic>.<br/><br/
 * Acciones<br/>
   Las tareas guardadas se pueden tanto editar como borrar pulsando los iconos correspondientes en el campo <italic>Acciones</italic>
   <br/><br/>
-  <img src="images/acciones.png" alt="acciones" width="158" height="154">
+  <img src="images/acciones.png" alt="acciones" width="158" height="154"><br/>
   A continuación se detallan cada una de ellas.
   
-* Editar
+* Editar<br/>
   Al pulsar sobre el icono del lápiz podremos editar la tarea. Podremos cambiar lo que queramos aunque los campos nombre y estado seguirán siendo obligatorios.
   <br/><br/>
   <img src="images/editar.png" alt="editar" width="auto" height="400">
 
-* Borrar
+* Borrar<br/>
   Al pulsar sobre el icono del cubo de basuara podremos borrar la tarea. Antes de proceder se nos preguntará si estamos seguros de borrarla. En caso afirmativo, la tarea se borrará.
   <br/><br/>
   <img src="images/borrar.png" alt="borrar" width="400" height="auto">
