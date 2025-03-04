@@ -156,7 +156,11 @@ También necesitaras instalar [PostgreSQL](https://www.postgresql.org/download/)
     Servidor corriendo en http://localhost:3000
     Conectado a PostgreSQL
     ```
-14. El servidor estaría corriendo en el puerto 3000 por lo que abrimos un navegador y escribimos http://localhost:3000 y debería de aparecernos la página principal de la app.
+    Nota: si quisieramos cambiar el puerto de escucha simplemente iríamos al archivo <strong>server/server.js</strong> y modificaríamos la siguiente línea
+    ```js
+    const port = 3000;  // Puedes cambiar el puerto si lo deseas
+    ```
+15. El servidor estaría corriendo en el puerto 3000 por lo que abrimos un navegador y escribimos http://localhost:3000 y debería de aparecernos la página principal de la app.
     ¡Ya estaríamos listos para empezar!
 
 <p align="right">(<a href="#readme-top">volver arriba</a>)</p>
@@ -204,7 +208,7 @@ O si lo prefieres, en la barra de navegación, en <italic>App</italic>.<br/><br/
   <img src="images/editar.png" alt="editar" width="auto" height="400">
 
 * Borrar<br/>
-  Al pulsar sobre el icono del cubo de basuara podremos borrar la tarea. Antes de proceder se nos preguntará si estamos seguros de borrarla. En caso afirmativo, la tarea se borrará.
+  Al pulsar sobre el icono del cubo de basura podremos borrar la tarea. Antes de proceder se nos preguntará si estamos seguros de borrarla. En caso afirmativo, la tarea se borrará.
   <br/><br/>
   <img src="images/borrar.png" alt="borrar" width="400" height="auto">
 
@@ -221,7 +225,7 @@ Agradecer el gran trabajo del equipo que ha hecho posible el proyecto en tan poc
 Adrián Doña => https://github.com/adridonha <br/>
 Álvaro Trigueros => https://github.com/alvarotrig <br/>
 Daniel Domínguez => https://github.com/daniel423615 <br/>
-José Enrique Mateo
+José Enrique Mateo => https://github.com/jemmCodeDev
 
 
 <p align="right">(<a href="#readme-top">volver arriba</a>)</p>
