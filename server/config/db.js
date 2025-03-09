@@ -3,12 +3,15 @@ const { Pool } = require('pg');
 
 // Configurar la conexión con PostgreSQL
 const pool = new Pool({
-  user: process.env.DB_USER,
-  host: process.env.DB_HOST,
-  database: process.env.DB_NAME,
-  password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT
+  connectionString: process.env.DB_STRING
 });
+// const pool = new Pool({
+//   user: process.env.DB_USER,
+//   host: process.env.DB_HOST,
+//   database: process.env.DB_NAME,
+//   password: process.env.DB_PASSWORD,
+//   port: process.env.DB_PORT
+// });
 
 pool.connect()
   .then(() => console.log('Conectado a PostgreSQL'))
